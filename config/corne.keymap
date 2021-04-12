@@ -10,73 +10,78 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
-        keymap {
-                compatible = "zmk,keymap";
+  keymap {
+    compatible = "zmk,keymap";
 
-                default_layer {
-// --------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ENT  |
-//                    | GUI | SPC | LWR |   | RSE | SPC  | ALT |
-                        bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp RET
-                  &kp LGUI &kp SPACE &mo 1   &mo 2 &kp SPACE &kp RALT
-                        >;
-                };
-                left_layer {
-// -------------------------------------------------------------------------------
-// |   ~  |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-// | CTRL |     |     |     |     |     |   |     |  _  |  +  |  {  |  }  | "|"  |
-// | SHFT |     |     |     |     |     |   |     |     |  <  |  >  |  ?  |      | // TODO: Fix this row when &mkp is committed
-//                    |     |     |     |   | ADJ | ENT |     |
-                        bindings = <
-   &kp TILDE &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR  &kp BSPC
-   &kp LCTRL &trans    &trans  &trans    &trans    &trans      &trans    &kp UNDER &kp PLUS        &kp LBRC &kp RBRC  &kp PIPE
-   &kp LSHFT &trans    &trans  &trans    &trans    &trans      &trans    &trans    &kp GT          &kp LT   &kp QMARK &kp TILDE
-                                     &trans &trans &trans      &mo 3 &kp RET &trans
-                        >;
-                };
-        };
-                right_layer {
-// -------------------------------------------------------------------------------
-// |  ESC |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-// |      |     |     |     |     |     |   |     |  -  |  =  |  [  |  ]  |  \   |
-// |      |     |     |     |     |     |   |     | INS |     |     |     |      |
-//                    |     | ALT | ADJ |   |     |     |     |
-                        bindings = <
-   &kp ESC    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5            &kp N6   &kp N7    &kp N8    &kp N9   &kp N0   &kp BSPC
-   &trans     &trans       &trans       &trans       &trans       &trans            &trans   &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &BSLH
-   &kp LSHFT  &trans       &out OUT_USB &trans       &trans       &trans            &trans   &kb INS   &trans    &trans   &trans   &trans
-                                                   &trans &kp LALT &mo 3            &trans &trans &trans
-                        >;
-                };
-                adjust_layer {
-// -----------------------------------------------------------------------------
-// |     | LCL | MSU | RCL | MWU |     |   | MNX | MVD | MPL | MVU | MPV |     | // TODO: once mouse keys exist
-// |     | MSL | MSD | MSR | MWD | USB |   | LFT | DWN |  UP | RGT |     |     | // TODO: once mouse keys exist
-// |CONFG| BT1 | BT2 | BT3 | BT4 | BT5 |   |     |     |     |     |     |     |
-//                   |     |     |     |   |     |     |     |
-                        bindings = <
-   &trans &trans       &trans       &trans       &trans          &trans    &trans         &kp C_NEXT &kp C_VOL_DN &kp K_PP &kp C_VOL_UP &kp C_PREV &trans
-   &trans &trans       &trans       &trans       &trans          &trans    &out USB       &kp LEFT   &kp DOWN     &kp UP   &kp RIGHT    &trans     &trans
-   &mo 4  &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5   &trans     &trans       &trans   &trans       &trans     &trans
-                                                                   &trans &trans &trans   &trans &trans &trans
-                        >;
-                };
-                config_layer {
-// -----------------------------------------------------------------------------
-// |BTCLR|     |     |     |     |     |   |     |     |     |     |     |     |
-// |     |     |     |     |     |     |   |     |     |     |     |     |     |
-// |     |     |     |     |     |     |   |     |     |     |     |     |RESET|
-//                   |     |     |     |   |     |     |     |
-                        bindings = <
-   &bt BT_CLR &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
-   &trans     &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
-   &trans     &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &reset
-                        &trans &trans &trans   &trans &trans &trans
-                        >;
-                };
+    default_layer {
+      // --------------------------------------   ---------------------------------------
+      // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
+      // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+      // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ENT  |
+      // -------------------| GUI | SPC | LWR |   | RSE | SPC  | ALT |-------------------
+      //                    -------------------   --------------------
+      bindings = <
+        &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
+        &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+        &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp RET
+                       &kp LGUI &kp SPACE &mo 1   &mo 2 &kp SPACE &kp RALT
+        >;
+    };
+    left_layer {
+      // --------------------------------------   --------------------------------------
+      // |   ~  |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
+      // | CTRL |     |     |     |     |     |   |     |  _  |  +  |  {  |  }  | "|"  |
+      // | SHFT |     |     |     |     |     |   |     |     |  <  |  >  |  ?  |      | // TODO: Fix this row when &mkp is committed
+      // -------------------|     |     |     |   | ADJ | ENT |     |-------------------
+      //                    -------------------   -------------------
+      bindings = <
+        &kp TILDE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR  &kp BSPC
+        &kp LCTRL &trans   &trans &trans   &trans   &trans      &trans    &kp UNDER &kp PLUS        &kp LBRC &kp RBRC  &kp PIPE
+        &kp LSHFT &trans   &trans &trans   &trans   &trans      &trans    &trans    &kp GT          &kp LT   &kp QMARK &kp TILDE
+                                      &trans &trans &trans      &mo 3 &kp RET &trans
+        >;
+    };
+  };
+  right_layer {
+    // --------------------------------------   --------------------------------------
+    // |  ESC |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
+    // |      |     |     |     |     |     |   |     |  -  |  =  |  [  |  ]  |  \   |
+    // |      |     |     |     |     |     |   |     | INS |     |     |     |      |
+    // -------------------|     | ALT | ADJ |   |     |     |     |-------------------
+    //                    -------------------   -------------------
+    bindings = <
+      &kp ESC &kp N1 &kp N2 &kp N3 &kp N4 &kp N5   &kp N6 &kp N7    &kp N8    &kp N9   &kp N0   &kp BSPC
+      &trans  &trans &trans &trans &trans &trans   &trans &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &kb BSLH
+      &trans  &trans &trans &trans &trans &trans   &trans &kb INS   &trans    &trans   &trans   &trans
+                           &trans &kp LALT &mo 3   &trans &trans &trans
+      >;
+  };
+  adjust_layer {
+    // -------------------------------------   -------------------------------------
+    // |     | LCL | MSU | RCL | MWU |     |   | MNX | MVD | MPL | MVU | MPV |     | // TODO: once mouse keys exist
+    // |     | MSL | MSD | MSR | MWD | USB |   | LFT | DWN |  UP | RGT |     |     | // TODO: once mouse keys exist
+    // |CONFG| BT1 | BT2 | BT3 | BT4 | BT5 |   |     |     |     |     |     |     |
+    // ------------------|     |     |     |   |     |     |     |------------------
+    //                   -------------------   -------------------
+    bindings = <
+      &trans &trans       &trans       &trans       &trans          &trans    &trans         &kp C_NEXT &kp C_VOL_DN &kp K_PP &kp C_VOL_UP &kp C_PREV &trans
+      &trans &trans       &trans       &trans       &trans          &trans    &out USB       &kp LEFT   &kp DOWN     &kp UP   &kp RIGHT    &trans     &trans
+      &mo 4  &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5   &trans     &trans       &trans   &trans       &trans     &trans
+                                                                      &trans &trans &trans   &trans &trans &trans
+      >;
+  };
+  config_layer {
+    // -------------------------------------   -------------------------------------
+    // |BTCLR|     |     |     |     |     |   |     |     |     |     |     |     |
+    // |     |     |     |     |     |     |   |     |     |     |     |     |     |
+    // |     |     |     |     |     |     |   |     |     |     |     |     |RESET|
+    // ------------------|     |     |     |   |     |     |     |------------------
+    //                   -------------------   -------------------
+    bindings = <
+      &bt BT_CLR &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+      &trans     &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+      &trans     &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &reset
+                               &trans &trans &trans   &trans &trans &trans
+      >;
+  };
 };
